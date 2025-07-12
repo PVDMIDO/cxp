@@ -1,12 +1,15 @@
-const pgp = require('pg-promise')();
-require('dotenv').config();
+const { Sequelize } = require('sequelize');
 
-const db = pgp({
-    host: process.env.PGHOST,
-    port: process.env.PGPORT,
-    database: process.env.PGDATABASE,
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-});
+const sequelize = new Sequelize(
+    process.env.PGDATABASE,
+    process.env.PGUSER,
+    process.env.PGPASSWORD,
+    {
+        host: process.env.PGHOST,
+        port: process.env.PGPORT,
+        dialect: 'postgres',
+        logging: false,
+    }
+);
 
-module.exports = db;
+module.exports = sequelize;
