@@ -1,4 +1,0 @@
-ALTER TABLE users
-ADD COLUMN name VARCHAR(255),
-ADD COLUMN department VARCHAR(255),
-ADD COLUMN face_embedding TEXT;
