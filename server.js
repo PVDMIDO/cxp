@@ -9,7 +9,14 @@ const employeeRoutes = require('./routes/employees');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+const corsOptions = {
+    origin: ['https://cxp.great-site.net', 'https://cxp.onrender.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json({ limit: '10mb' }));
 
 // Use routes
