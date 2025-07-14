@@ -55,7 +55,7 @@ const markAttendanceByFaceDescriptor = async (req, res) => {
         }
 
         // Threshold for matching (tune as needed)
-        const MATCH_THRESHOLD = 0.6;
+        const MATCH_THRESHOLD = 0.7;
         if (!matchedEmployee || minDistance > MATCH_THRESHOLD) {
             return res.status(404).json({ message: 'No matching face found' });
         }
