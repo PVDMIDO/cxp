@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { markAttendance, markAttendanceByFaceDescriptor } = require('../controllers/attendanceController');
+const { markAttendance, markAttendanceByFaceDescriptor, getAttendance } = require('../controllers/attendanceController');
 
 router.post('/', markAttendance);
 router.post('/face', markAttendanceByFaceDescriptor);
+router.get('/', getAttendance);
 
 module.exports = router;
