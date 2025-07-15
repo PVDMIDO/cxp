@@ -79,4 +79,19 @@ const markAttendanceByFaceDescriptor = async (req, res) => {
     }
 };
 
-module.exports = { markAttendance, markAttendanceByFaceDescriptor };
+const getAttendance = async (req, res) => {
+    try {
+        const result = await pool.query(
+            `SELECT a.id, a.employee_id, a.timestamp, a.attendance_type, e.name, e.department, e.position
+             FROM attendance a
+             JOIN employees e ON a.employee_id = e.employee_id
+             ORDER BY a.timestamp DESC`
+        );
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Get attendance error:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+module.exports = { markAttendance, markAttendanceByFaceDescriptor, getAttendance };
